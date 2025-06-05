@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://b7lx5afapaokt"]
+[gd_scene load_steps=3 format=3 uid="uid://b7lx5afapaokt"]
+
+[ext_resource type="Texture2D" uid="uid://bi3x3tepti7o8" path="res://Assets/UI/logo.png" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://cw6xdvj27xjbp" path="res://Scripts/UI/MainMenu.cs" id="1_uu6xs"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -7,3 +10,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_uu6xs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.298039, 0.423529, 0.313726, 1)
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(576, 176)
+scale = Vector2(9.1, 9.1)
+texture = ExtResource("1_glv2v")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.427
+anchor_top = 0.63
+anchor_right = 0.573
+anchor_bottom = 0.781
+offset_left = -0.404022
+offset_top = -0.240021
+offset_right = 0.403992
+offset_bottom = -0.0880127
+theme_override_font_sizes/font_size = 50
+text = "Start"

@@ -11,9 +11,19 @@ config_version=5
 [application]
 
 config/name="TheBizarreJourney"
+run/main_scene="uid://b7lx5afapaokt"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="uid://bgnl413mj527p"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [dotnet]
 
 project/assembly_name="TheBizarreJourney"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
