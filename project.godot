@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="TheBizarreJourney"
-config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+config/icon="uid://bgnl413mj527p"
 
 [dotnet]
 
