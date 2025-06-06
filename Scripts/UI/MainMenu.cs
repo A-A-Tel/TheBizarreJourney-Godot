@@ -12,17 +12,26 @@ public partial class MainMenu : Control
 		GD.Print("Game started");
 	}
 
-	private void OpenSettings()
+	private void OpenSettings()	
 	{
-		
+		Window root = GetTree().Root;
+		Settings settingsMenu = ResourceLoader.Load<PackedScene>("uid://0om27gmb1j0n").Instantiate<Settings>();
+
+		settingsMenu.PreviousScene = this;
+
+		root.AddChild(settingsMenu);
+		root.RemoveChild(this);
 	}
 
 	public override void _Ready()
 	{
 		_startButton = GetNode<Button>("StartButton");
-		_settingsButton = GetNode<Button>("SettingsButton");
 		
 		_startButton.Pressed += StartGame;
+		
+
+		_settingsButton = GetNode<Button>("SettingsButton");
+		
 		_settingsButton.Pressed += OpenSettings;
 	}
 }

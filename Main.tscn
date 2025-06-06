@@ -20,7 +20,7 @@ anchor_bottom = 1.0
 color = Color(0.298039, 0.423529, 0.313726, 1)
 
 [node name="Logo" type="Sprite2D" parent="."]
-position = Vector2(576, 176)
+position = Vector2(576, 110)
 scale = Vector2(9.1, 9.1)
 texture = ExtResource("1_glv2v")
 
@@ -37,7 +37,7 @@ offset_right = 0.276001
 offset_bottom = -0.124023
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 48
 text = "Settings"
 
 [node name="StartButton" type="Button" parent="."]
@@ -53,5 +53,5 @@ offset_right = 0.291992
 offset_bottom = 0.268005
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 48
 text = "Start"

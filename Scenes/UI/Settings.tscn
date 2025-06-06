@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://0om27gmb1j0n"]
+[gd_scene load_steps=3 format=3 uid="uid://0om27gmb1j0n"]
 
 [ext_resource type="Script" uid="uid://c4smg77p7rsjb" path="res://Scripts/UI/Settings.cs" id="1_mj2lg"]
+[ext_resource type="AudioStream" uid="uid://4qj2cpel0lpd" path="res://Assets/Sounds/MenuHover.wav" id="2_v5qja"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -11,7 +12,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mj2lg")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="HoverAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_v5qja")
+mix_target = 2
+
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -21,10 +26,14 @@ color = Color(0.298039, 0.423529, 0.313726, 1)
 [node name="VolumeHeader" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.150608
-anchor_top = 0.111883
-anchor_right = 0.296441
-anchor_bottom = 0.210648
+anchor_left = 0.187062
+anchor_top = 0.206786
+anchor_right = 0.332895
+anchor_bottom = 0.305551
+offset_left = 0.000213623
+offset_top = 0.000137329
+offset_right = 0.000213623
+offset_bottom = 0.000137329
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 64
@@ -37,10 +46,10 @@ metadata/_edit_use_anchors_ = true
 [node name="VolumeSlider" type="HSlider" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.135417
-anchor_top = 0.243827
-anchor_right = 0.310764
-anchor_bottom = 0.268519
+anchor_left = 0.172743
+anchor_top = 0.338735
+anchor_right = 0.34809
+anchor_bottom = 0.363427
 value = 50.0
 scrollable = false
 metadata/_edit_use_anchors_ = true
@@ -48,10 +57,10 @@ metadata/_edit_use_anchors_ = true
 [node name="VolumeLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.197917
-anchor_top = 0.282407
-anchor_right = 0.252604
-anchor_bottom = 0.356481
+anchor_left = 0.232639
+anchor_top = 0.383487
+anchor_right = 0.287326
+anchor_bottom = 0.457561
 theme_override_font_sizes/font_size = 48
 text = "XXX"
 metadata/_edit_use_anchors_ = true
@@ -59,10 +68,14 @@ metadata/_edit_use_anchors_ = true
 [node name="FullscreenHeader" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.431424
-anchor_top = 0.111883
-anchor_right = 0.657118
-anchor_bottom = 0.210648
+anchor_left = 0.626733
+anchor_top = 0.206787
+anchor_right = 0.852427
+anchor_bottom = 0.305552
+offset_left = 0.000244141
+offset_top = 0.000137329
+offset_right = 0.000244141
+offset_bottom = 0.000137329
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 64
@@ -73,20 +86,34 @@ autowrap_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="FullscreenCheck" type="CheckButton" parent="."]
-layout_mode = 0
-anchor_left = 0.524306
-anchor_top = 0.236111
-anchor_right = 0.5625
-anchor_bottom = 0.273148
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.720486
+anchor_top = 0.331019
+anchor_right = 0.758681
+anchor_bottom = 0.368056
 metadata/_edit_use_anchors_ = true
 
 [node name="FullscreenLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.514757
-anchor_top = 0.282407
-anchor_right = 0.569444
-anchor_bottom = 0.356481
+anchor_left = 0.711805
+anchor_top = 0.383487
+anchor_right = 0.766492
+anchor_bottom = 0.457561
 theme_override_font_sizes/font_size = 48
 text = "XXX"
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.445747
+anchor_top = 0.720679
+anchor_right = 0.554253
+anchor_bottom = 0.839506
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Exit"
 metadata/_edit_use_anchors_ = true

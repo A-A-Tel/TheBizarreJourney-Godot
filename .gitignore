@@ -11,3 +11,4 @@ dist/
 
 # IDE specific
 .idea/
+*.DotSettings.user
