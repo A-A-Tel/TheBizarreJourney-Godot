@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://ci4noconwpmu5"
-path="res://.godot/imported/MenuHover.wav-de29e189972a75551c58c08373ffedc5.sample"
+uid="uid://bhq28m4rsbiy0"
+path="res://.godot/imported/MenuSelect.wav-642a08aba3678076906ab7821dc1b35b.sample"
 
 [deps]
 
-source_file="res://Assets/Sounds/MenuHover.wav"
-dest_files=["res://.godot/imported/MenuHover.wav-de29e189972a75551c58c08373ffedc5.sample"]
+source_file="res://Assets/Sounds/MenuSelect.wav"
+dest_files=["res://.godot/imported/MenuSelect.wav-642a08aba3678076906ab7821dc1b35b.sample"]
 
 [params]
 

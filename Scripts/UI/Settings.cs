@@ -1,75 +1,78 @@
+using System;
 using Godot;
+using TheBizarreJourney.Scripts.Misc;
+using TheBizarreJourney.Scripts;
 
 namespace TheBizarreJourney.Scripts.UI;
 
 public partial class Settings : Control
 {
 	public Node PreviousScene { get; set; }
-	
+
+	private AudioManager _audioManager;
+
 	private HSlider _volumeSlider;
 	private Label _volumeLabel;
 
 	private CheckButton _fullscreenCheck;
 	private Label _fullscreenLabel;
-	
-	private Button _exitButton;
-	
-	private AudioStreamPlayer _hoverAudio;
 
-	private void VolumeAction(double value)
+	private Button _exitButton;
+
+	private void VolumeAction(double valueD)
 	{
-		_volumeLabel.Text = ((int)value).ToString();
+		int value = (int)valueD;
+
+		_volumeLabel.Text = (value).ToString();
+		_audioManager.SetVolume(value);
 	}
 
 	private void FullscreenAction()
 	{
 		bool fullscreen = _fullscreenCheck.ButtonPressed;
 		_fullscreenLabel.Text = fullscreen ? "On" : "Off";
-		
-		DisplayServer.WindowSetMode(fullscreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+
+		DisplayServer.WindowSetMode(
+			fullscreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+		if (fullscreen) _audioManager.PlayMenuSelect();
 	}
 
 	private void ExitAction()
 	{
 		Window root = GetTree().Root;
-		
+
 		root.AddChild(PreviousScene);
 		root.RemoveChild(this);
 		QueueFree();
 	}
 
-	private void HoverAction()
-	{
-		_hoverAudio.Play();
-	}
-
 	public override void _Ready()
 	{
+		_audioManager = GetTree().Root.GetChild<AudioManager>(0);
+
 		_volumeSlider = GetNode<HSlider>("VolumeSlider");
 		_volumeLabel = GetNode<Label>("VolumeLabel");
-		
+
+		_volumeSlider.Value = _audioManager.GetVolume();
 		_volumeSlider.ValueChanged += VolumeAction;
-		_volumeSlider.MouseEntered += HoverAction;
-		
-		VolumeAction(_volumeSlider.Value);
+		_volumeSlider.MouseEntered += _audioManager.PlayMenuHover;
+
+		VolumeAction(_audioManager.GetVolume());
 
 
 		_fullscreenCheck = GetNode<CheckButton>("FullscreenCheck");
 		_fullscreenLabel = GetNode<Label>("FullscreenLabel");
 
 		_fullscreenCheck.Pressed += FullscreenAction;
-		_fullscreenCheck.MouseEntered += HoverAction;
-		
+		_fullscreenCheck.MouseEntered += _audioManager.PlayMenuHover;
+
 		_fullscreenCheck.ButtonPressed = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
 		FullscreenAction();
-		
-		
+
+
 		_exitButton = GetNode<Button>("ExitButton");
-		
+
 		_exitButton.Pressed += ExitAction;
-		_exitButton.MouseEntered += HoverAction;
-		
-		
-		_hoverAudio = GetNode<AudioStreamPlayer>("HoverAudio");
+		_exitButton.MouseEntered += _audioManager.PlayMenuHover;
 	}
 }

@@ -6,4 +6,7 @@
   <ItemGroup>
     <Content Include="Scripts\Diagram.mmd" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\Misc\" />
+  </ItemGroup>
 </Project>

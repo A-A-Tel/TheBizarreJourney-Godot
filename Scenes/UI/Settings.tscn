@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://0om27gmb1j0n"]
+[gd_scene load_steps=2 format=3 uid="uid://0om27gmb1j0n"]
 
 [ext_resource type="Script" uid="uid://c4smg77p7rsjb" path="res://Scripts/UI/Settings.cs" id="1_mj2lg"]
-[ext_resource type="AudioStream" uid="uid://4qj2cpel0lpd" path="res://Assets/Sounds/MenuHover.wav" id="2_v5qja"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -11,10 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mj2lg")
-
-[node name="HoverAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_v5qja")
-mix_target = 2
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
