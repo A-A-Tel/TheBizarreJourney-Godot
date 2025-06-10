@@ -1,15 +1,11 @@
 using System;
 using Godot;
-using TheBizarreJourney.Scripts.Misc;
-using TheBizarreJourney.Scripts;
 
 namespace TheBizarreJourney.Scripts.UI;
 
 public partial class Settings : Control
 {
 	public Node PreviousScene { get; set; }
-
-	private AudioManager _audioManager;
 
 	private HSlider _volumeSlider;
 	private Label _volumeLabel;
@@ -24,7 +20,7 @@ public partial class Settings : Control
 		int value = (int)valueD;
 
 		_volumeLabel.Text = (value).ToString();
-		_audioManager.SetVolume(value);
+		Main.AudioManager.SetVolume(value);
 	}
 
 	private void FullscreenAction()
@@ -34,7 +30,9 @@ public partial class Settings : Control
 
 		DisplayServer.WindowSetMode(
 			fullscreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
-		if (fullscreen) _audioManager.PlayMenuSelect();
+		
+		if (fullscreen) Main.AudioManager.PlayMenuSelect();
+		else Main.AudioManager.PlayMenuDeselect();
 	}
 
 	private void ExitAction()
@@ -48,31 +46,28 @@ public partial class Settings : Control
 
 	public override void _Ready()
 	{
-		_audioManager = GetTree().Root.GetChild<AudioManager>(0);
-
 		_volumeSlider = GetNode<HSlider>("VolumeSlider");
 		_volumeLabel = GetNode<Label>("VolumeLabel");
 
-		_volumeSlider.Value = _audioManager.GetVolume();
+		_volumeSlider.Value = Main.AudioManager.GetVolume();
 		_volumeSlider.ValueChanged += VolumeAction;
-		_volumeSlider.MouseEntered += _audioManager.PlayMenuHover;
+		_volumeSlider.MouseEntered += Main.AudioManager.PlayMenuHover;
 
-		VolumeAction(_audioManager.GetVolume());
+		VolumeAction(Main.AudioManager.GetVolume());
 
 
 		_fullscreenCheck = GetNode<CheckButton>("FullscreenCheck");
 		_fullscreenLabel = GetNode<Label>("FullscreenLabel");
 
 		_fullscreenCheck.Pressed += FullscreenAction;
-		_fullscreenCheck.MouseEntered += _audioManager.PlayMenuHover;
+		_fullscreenCheck.MouseEntered += Main.AudioManager.PlayMenuHover;
 
 		_fullscreenCheck.ButtonPressed = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
-		FullscreenAction();
-
-
+		
 		_exitButton = GetNode<Button>("ExitButton");
 
 		_exitButton.Pressed += ExitAction;
-		_exitButton.MouseEntered += _audioManager.PlayMenuHover;
+		_exitButton.Pressed += Main.AudioManager.PlayMenuDeselect;
+		_exitButton.MouseEntered += Main.AudioManager.PlayMenuHover;
 	}
 }

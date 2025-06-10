@@ -7,16 +7,19 @@ namespace TheBizarreJourney.Scripts;
 
 public partial class Main : Node
 {
+    public static readonly AudioManager AudioManager = new();
+    
     public override void _Ready()
     {
-        QueueFree();
-        Window window = GetTree().Root;
-
-        AudioManager audioManager = new();
-        audioManager.Name = "AudioManager";
+        Window root = GetTree().Root;
         
-        window.CallDeferred(Node.MethodName.AddChild, audioManager);
-        window.CallDeferred(Node.MethodName.AddChild, GD.Load<PackedScene>("uid://b7lx5afapaokt").Instantiate());
+        root.CallDeferred(Node.MethodName.RemoveChild, this);
+        QueueFree();
+
+        AudioManager.Name = "AudioManager";
+        
+        root.CallDeferred(Node.MethodName.AddChild, AudioManager);
+        root.CallDeferred(Node.MethodName.AddChild, GD.Load<PackedScene>("uid://b7lx5afapaokt").Instantiate());
     }
 
     

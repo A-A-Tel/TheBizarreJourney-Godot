@@ -14,9 +14,11 @@ public partial class AudioManager : Node
     {
         AudioStreamWav menuHover = GD.Load<AudioStreamWav>("uid://ci4noconwpmu5");
         AudioStreamWav menuSelect = GD.Load<AudioStreamWav>("uid://bhq28m4rsbiy0");
+        AudioStreamWav menuDeselect = GD.Load<AudioStreamWav>("uid://85c07jlpiwly");
         
         AddPlayer(_menuHover, menuHover, "MenuHover");
         AddPlayer(_menuSelect, menuSelect, "MenuSelect");
+        AddPlayer(_menuDeselect, menuDeselect, "MenuDeselect");
         
         SetVolume(_volume);
     }
@@ -30,7 +32,8 @@ public partial class AudioManager : Node
     public void SetVolume(int volume)
     {
         _volume = volume;
-        AudioServer.SetBusVolumeDb(0, Mathf.Lerp(-80f, 24f, volume / 100f));
+        if (volume == 0) AudioServer.SetBusVolumeDb(0, -80);
+        else AudioServer.SetBusVolumeDb(0, Mathf.Lerp(-20f, 0f, volume / 100f));
     }
 
     public void PlayMenuHover()
@@ -41,6 +44,11 @@ public partial class AudioManager : Node
     public void PlayMenuSelect()
     {
         _menuSelect.Play();
+    }
+
+    public void PlayMenuDeselect()
+    {
+        _menuDeselect.Play();
     }
 
     private void AddPlayer(AudioStreamPlayer player, AudioStream stream, string name)

@@ -17,8 +17,10 @@ config/icon="uid://bgnl413mj527p"
 
 [display]
 
+window/size/borderless=true
+window/size/extend_to_title=true
+window/size/sharp_corners=true
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
 
 [dotnet]
 
