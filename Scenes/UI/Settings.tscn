@@ -1,0 +1,118 @@
+[gd_scene load_steps=2 format=3 uid="uid://0om27gmb1j0n"]
+
+[ext_resource type="Script" uid="uid://c4smg77p7rsjb" path="res://Scripts/UI/Settings.cs" id="1_mj2lg"]
+
+[node name="Settings" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mj2lg")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.298039, 0.423529, 0.313726, 1)
+
+[node name="VolumeHeader" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187062
+anchor_top = 0.206786
+anchor_right = 0.332895
+anchor_bottom = 0.305551
+offset_left = 0.000213623
+offset_top = 0.000137329
+offset_right = 0.000213623
+offset_bottom = 0.000137329
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 64
+text = "Volume"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="VolumeSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.172743
+anchor_top = 0.338735
+anchor_right = 0.34809
+anchor_bottom = 0.363427
+value = 50.0
+scrollable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="VolumeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.232639
+anchor_top = 0.383487
+anchor_right = 0.287326
+anchor_bottom = 0.457561
+theme_override_font_sizes/font_size = 48
+text = "XXX"
+metadata/_edit_use_anchors_ = true
+
+[node name="FullscreenHeader" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.626733
+anchor_top = 0.206787
+anchor_right = 0.852427
+anchor_bottom = 0.305552
+offset_left = 0.000244141
+offset_top = 0.000137329
+offset_right = 0.000244141
+offset_bottom = 0.000137329
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 64
+text = "Fullscreen"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="FullscreenCheck" type="CheckButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.720486
+anchor_top = 0.331019
+anchor_right = 0.758681
+anchor_bottom = 0.368056
+metadata/_edit_use_anchors_ = true
+
+[node name="FullscreenLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.711805
+anchor_top = 0.383487
+anchor_right = 0.766492
+anchor_bottom = 0.457561
+theme_override_font_sizes/font_size = 48
+text = "XXX"
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.445747
+anchor_top = 0.720679
+anchor_right = 0.554253
+anchor_bottom = 0.839506
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(576, 324)

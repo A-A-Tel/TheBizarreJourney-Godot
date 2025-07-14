@@ -1,0 +1,23 @@
+classDiagram
+    class MainMenu {
+        -_startButton: Button
+        -_settingsButton: Button
+        
+        -StartGame() void
+        -OpenSettings() void
+    }
+    
+    class WorldEntity {
+        <<abstract>>
+        
+        +?Name: string
+        
+        +?Interact(PlayerEntity) void
+    }
+    
+    class PlayerEntity {
+        Move() void
+        Interact() void
+        OpenSettings() void
+    }
+    
