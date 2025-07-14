@@ -7,3 +7,17 @@ classDiagram
         -OpenSettings() void
     }
     
+    class WorldEntity {
+        <<abstract>>
+        
+        +?Name: string
+        
+        +?Interact(PlayerEntity) void
+    }
+    
+    class PlayerEntity {
+        
+        
+        Move() void
+    }
+    
