@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c4smg77p7rsjb" path="res://Scripts/UI/Settings.cs" id="1_mj2lg"]
 
 [node name="Settings" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,3 +113,6 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "Exit"
 metadata/_edit_use_anchors_ = true
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(576, 324)

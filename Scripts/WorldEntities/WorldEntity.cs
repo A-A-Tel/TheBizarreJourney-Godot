@@ -6,7 +6,5 @@ public abstract partial class WorldEntity : StaticBody2D
 {
     public abstract string EntityName { get; protected set; }
 
-    public abstract void Interact(PlayerEntity player);
-    
-    
+    public abstract void Interact(WorldEntity entity);
 }

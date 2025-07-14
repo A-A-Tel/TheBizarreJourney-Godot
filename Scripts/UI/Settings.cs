@@ -15,11 +15,14 @@ public partial class Settings : Control
 
 	private Button _exitButton;
 
+	private Camera2D _camera;
+
 	private void VolumeAction(double valueD)
 	{
 		int value = (int)valueD;
 
-		_volumeLabel.Text = (value).ToString();
+		_volumeLabel.Text = value.ToString();
+
 		Main.AudioManager.SetVolume(value);
 	}
 
@@ -30,17 +33,20 @@ public partial class Settings : Control
 
 		DisplayServer.WindowSetMode(
 			fullscreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
-		
+
 		if (fullscreen) Main.AudioManager.PlayMenuSelect();
 		else Main.AudioManager.PlayMenuDeselect();
 	}
 
 	private void ExitAction()
 	{
-		Window root = GetTree().Root;
+		SceneTree tree = GetTree();
+		Window root = tree.Root;
 
 		root.AddChild(PreviousScene);
 		root.RemoveChild(this);
+
+		tree.Paused = false;
 		QueueFree();
 	}
 
@@ -63,11 +69,19 @@ public partial class Settings : Control
 		_fullscreenCheck.MouseEntered += Main.AudioManager.PlayMenuHover;
 
 		_fullscreenCheck.ButtonPressed = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
-		
+
 		_exitButton = GetNode<Button>("ExitButton");
 
 		_exitButton.Pressed += ExitAction;
 		_exitButton.Pressed += Main.AudioManager.PlayMenuDeselect;
 		_exitButton.MouseEntered += Main.AudioManager.PlayMenuHover;
+
+
+		_camera = GetNode<Camera2D>("Camera");
+
+		_camera.MakeCurrent();
+
+
+		GetTree().Paused = true;
 	}
 }
