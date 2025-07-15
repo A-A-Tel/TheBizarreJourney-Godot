@@ -4,7 +4,7 @@ namespace TheBizarreJourney.Scripts.WorldEntities;
 
 public abstract partial class WorldEntity : StaticBody2D
 {
-    private Direction _direction;
+    protected Direction _direction;
     
     public abstract string EntityName { get; protected set; }
 

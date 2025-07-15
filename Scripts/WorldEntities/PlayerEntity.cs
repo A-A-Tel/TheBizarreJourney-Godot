@@ -58,8 +58,11 @@ public partial class PlayerEntity : WorldEntity
 
             moveVector = leftJoyAxis;
         }
-
+        
+        _direction = MathHelper.GetVector2Direction(moveVector);
+        
         MoveAndCollide(moveVector * delta * _speed);
+        GD.Print(_direction);
     }
 
     private void OpenSettings()
