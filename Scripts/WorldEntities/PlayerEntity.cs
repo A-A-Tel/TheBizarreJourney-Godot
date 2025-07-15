@@ -22,6 +22,7 @@ public partial class PlayerEntity : WorldEntity
 
     public override void _Ready()
     {
+        base._Ready();
         _camera = GetNode<Camera2D>("Camera");
         _camera.MakeCurrent();
     }
