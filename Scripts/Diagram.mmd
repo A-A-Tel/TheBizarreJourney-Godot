@@ -10,14 +10,23 @@ classDiagram
     class WorldEntity {
         <<abstract>>
         
+        -Direction: Direction
         +?Name: string
         
         +?Interact(PlayerEntity) void
     }
     
     class PlayerEntity {
-        Move() void
-        Interact() void
-        OpenSettings() void
+        -Move() void
+        +Interact() void
+        +OpenSettings() void
+    }
+    
+    class Direction {
+        <<enumeration>>
+        North
+        East,
+        South,
+        West
     }
     

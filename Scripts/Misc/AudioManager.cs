@@ -4,12 +4,12 @@ namespace TheBizarreJourney.Scripts.Misc;
 
 public partial class AudioManager : Node
 {
-    private int _volume = 70;
+    private AudioStreamPlayer _menuDeselect = new();
 
     private AudioStreamPlayer _menuHover = new();
     private AudioStreamPlayer _menuSelect = new();
-    private AudioStreamPlayer _menuDeselect = new();
     private AudioStreamPlayer _no = new();
+    private int _volume = 70;
 
     public override void _Ready()
     {

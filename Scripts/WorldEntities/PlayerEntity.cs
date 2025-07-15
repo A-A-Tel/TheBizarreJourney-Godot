@@ -1,16 +1,16 @@
 using Godot;
 using TheBizarreJourney.Scripts.Misc;
-using TheBizarreJourney.Scripts.UI;
 
 namespace TheBizarreJourney.Scripts.WorldEntities;
 
 public partial class PlayerEntity : WorldEntity
 {
-    public override string EntityName { get; protected set; } = "Player";
+    private static readonly Vector2 Deadzone = new(0.1F, 0.1F);
+
+    private Camera2D _camera;
 
     private float _speed = 50F;
-
-    private static readonly Vector2 Deadzone = new(0.1F, 0.1F);
+    public override string EntityName { get; protected set; } = "Player";
 
     public override void _Process(double delta)
     {
@@ -18,6 +18,12 @@ public partial class PlayerEntity : WorldEntity
 
         if (Input.IsActionJustPressed("INTERACT")) Interact(this);
         if (Input.IsActionJustPressed("OPEN_SETTINGS")) OpenSettings();
+    }
+
+    public override void _Ready()
+    {
+        _camera = GetNode<Camera2D>("Camera");
+        _camera.MakeCurrent();
     }
 
     public override void Interact(WorldEntity entity)
@@ -57,13 +63,7 @@ public partial class PlayerEntity : WorldEntity
 
     private void OpenSettings()
     {
-        Window root = GetTree().Root;
-        Settings settingsMenu = ResourceLoader.Load<PackedScene>("uid://0om27gmb1j0n").Instantiate<Settings>();
-
-        settingsMenu.PreviousScene = this;
-
-        root.RemoveChild(this);
-        root.AddChild(settingsMenu);
+        Main.SettingsMenu.PauseGame(_camera);
         Main.AudioManager.PlayMenuSelect();
     }
 }
