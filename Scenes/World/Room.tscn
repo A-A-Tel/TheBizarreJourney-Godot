@@ -19,4 +19,7 @@ tile_set = SubResource("TileSet_rqtmw")
 position = Vector2(197, 31)
 
 [node name="Player" parent="." instance=ExtResource("2_ora5q")]
-position = Vector2(197, 65)
+position = Vector2(215, 62)
+
+[node name="TestEntity2" parent="." instance=ExtResource("3_f1yye")]
+position = Vector2(229, 31)

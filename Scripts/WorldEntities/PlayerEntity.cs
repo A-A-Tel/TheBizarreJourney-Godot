@@ -50,13 +50,19 @@ public partial class PlayerEntity : WorldEntity
         foreach (var node2D in area.GetOverlappingBodies())
         {
             if (node2D == this || node2D is not WorldEntity worldEntity) continue;
-            
-            Vector2 position = worldEntity.Position.Abs();
-                
-            double distance = Math.Sqrt(Math.Pow(position.X, 2) + Math.Pow(position.Y, 2));
+
+            (float playerX, float playerY) = GlobalPosition;
+            (float entityX, float entityY) = worldEntity.GlobalPosition;
+
+            double distance =
+                Math.Sqrt(
+                    Math.Pow(entityX - playerX, 2)
+                    +
+                    Math.Pow(entityY - playerY, 2)
+                );
 
             if (!(distance < closestDistance)) continue;
-            
+
             closest = worldEntity;
             closestDistance = distance;
         }

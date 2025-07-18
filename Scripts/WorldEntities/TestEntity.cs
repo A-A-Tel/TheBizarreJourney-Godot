@@ -8,6 +8,6 @@ public partial class TestEntity : WorldEntity
 	
 	public override void Interact(WorldEntity entity)
 	{
-		GD.Print(EntityName);
+		GD.Print(Name);
 	}
 }
