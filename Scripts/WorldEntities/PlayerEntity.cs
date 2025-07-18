@@ -92,7 +92,7 @@ public partial class PlayerEntity : WorldEntity
 
             Vector2 leftJoyAxis = new(leftJoyX, leftJoyY);
 
-            moveVector = !MathHelper.IsVector2Between(leftJoyAxis, -Deadzone, Deadzone) ? leftJoyAxis : Vector2.Zero;
+            moveVector = MathHelper.IsVector2Between(leftJoyAxis, -Deadzone, Deadzone) ? Vector2.Zero : leftJoyAxis;
         }
 
         bool moving = moveVector != Vector2.Zero;

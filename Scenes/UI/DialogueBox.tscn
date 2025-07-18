@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6hx3h20t84wc"]
+
+[ext_resource type="Texture2D" uid="uid://cfi8pdyxuhxkm" path="res://Assets/UI/DialogueBox.png" id="1_38wjl"]
+
+[node name="DialogueBox" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+
+[node name="Texture" type="Sprite2D" parent="."]
+position = Vector2(576, 446)
+scale = Vector2(5, 5)
+texture = ExtResource("1_38wjl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Texture"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.5
+offset_top = -50.0
+offset_right = -9.5
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lorem ipsum dolor sit amet"
