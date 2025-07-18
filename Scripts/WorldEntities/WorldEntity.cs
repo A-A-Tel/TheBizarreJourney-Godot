@@ -4,7 +4,9 @@ namespace TheBizarreJourney.Scripts.WorldEntities;
 
 public abstract partial class WorldEntity : StaticBody2D
 {
-    private Direction _direction;
+    protected Direction Direction;
+
+    protected AnimationPlayer AnimPlayer;
     
     public abstract string EntityName { get; protected set; }
 
@@ -12,6 +14,7 @@ public abstract partial class WorldEntity : StaticBody2D
 
     public override void _Ready()
     {
-        _direction = Direction.South;
+        Direction = Direction.South;
+        AnimPlayer = GetNode<AnimationPlayer>("Sprite/AnimationPlayer");
     }
 }
