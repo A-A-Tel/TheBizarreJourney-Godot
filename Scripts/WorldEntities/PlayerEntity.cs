@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using TheBizarreJourney.Scripts.Misc;
 
@@ -5,18 +6,22 @@ namespace TheBizarreJourney.Scripts.WorldEntities;
 
 public partial class PlayerEntity : WorldEntity
 {
-    private static readonly Vector2 Deadzone = new(0.1F, 0.1F);
+    private float _speed = 50F;
 
     private Camera2D _camera;
 
-    private float _speed = 50F;
+    // One Area2D per Direction enum value, matching the index
+    private Area2D[] _interactAreas;
+
+    private static readonly Vector2 Deadzone = new(0.1F, 0.1F);
+
     public override string EntityName { get; protected set; } = "Player";
 
     public override void _Process(double delta)
     {
         Move((float)delta);
 
-        if (Input.IsActionJustPressed("INTERACT")) Interact(this);
+        if (Input.IsActionJustPressed("INTERACT")) Interact(null);
         if (Input.IsActionJustPressed("OPEN_SETTINGS")) OpenSettings();
     }
 
@@ -25,11 +30,38 @@ public partial class PlayerEntity : WorldEntity
         base._Ready();
         _camera = GetNode<Camera2D>("Camera");
         _camera.MakeCurrent();
+
+        _interactAreas =
+        [
+            GetNode<Area2D>("North"),
+            GetNode<Area2D>("East"),
+            GetNode<Area2D>("South"),
+            GetNode<Area2D>("West")
+        ];
     }
 
     public override void Interact(WorldEntity entity)
     {
-        Main.AudioManager.PlayNo();
+        Area2D area = _interactAreas[(byte)Direction];
+
+        WorldEntity closest = null;
+        double closestDistance = double.MaxValue;
+
+        foreach (var node2D in area.GetOverlappingBodies())
+        {
+            if (node2D == this || node2D is not WorldEntity worldEntity) continue;
+            
+            Vector2 position = worldEntity.Position.Abs();
+                
+            double distance = Math.Sqrt(Math.Pow(position.X, 2) + Math.Pow(position.Y, 2));
+
+            if (!(distance < closestDistance)) continue;
+            
+            closest = worldEntity;
+            closestDistance = distance;
+        }
+
+        closest?.Interact(this);
     }
 
     private void Move(float delta)
@@ -54,15 +86,24 @@ public partial class PlayerEntity : WorldEntity
 
             Vector2 leftJoyAxis = new(leftJoyX, leftJoyY);
 
-            if (MathHelper.IsVector2Between(leftJoyAxis, -Deadzone, Deadzone)) return;
-
-            moveVector = leftJoyAxis;
+            moveVector = !MathHelper.IsVector2Between(leftJoyAxis, -Deadzone, Deadzone) ? leftJoyAxis : Vector2.Zero;
         }
-        
-        _direction = MathHelper.GetVector2Direction(moveVector);
-        
-        MoveAndCollide(moveVector * delta * _speed);
-        GD.Print(_direction);
+
+        bool moving = moveVector != Vector2.Zero;
+
+        if (moving)
+        {
+            Direction = MathHelper.GetVector2Direction(moveVector);
+            MoveAndCollide(moveVector * delta * _speed);
+        }
+
+        PlayAnimation(moving);
+    }
+
+    private void PlayAnimation(bool moving)
+    {
+        string animation = (moving ? "WALK_" : "IDLE_") + Direction.ToString().ToUpper();
+        AnimPlayer.Play(animation);
     }
 
     private void OpenSettings()
