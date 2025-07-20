@@ -8,7 +8,7 @@ public partial class PlayerEntity : WorldEntity
 {
     private float _speed = 50F;
 
-    private Camera2D _camera;
+    public Camera2D Camera { get; private set; }
 
     // One Area2D per Direction enum value, matching the index
     private Area2D[] _interactAreas;
@@ -28,8 +28,8 @@ public partial class PlayerEntity : WorldEntity
     public override void _Ready()
     {
         base._Ready();
-        _camera = GetNode<Camera2D>("Camera");
-        _camera.MakeCurrent();
+        Camera = GetNode<Camera2D>("Camera");
+        Camera.MakeCurrent();
 
         _interactAreas =
         [
@@ -114,7 +114,7 @@ public partial class PlayerEntity : WorldEntity
 
     private void OpenSettings()
     {
-        Main.SettingsMenu.PauseGame(_camera);
+        Main.SettingsMenu.PauseGame(Camera);
         Main.AudioManager.PlayMenuSelect();
     }
 }

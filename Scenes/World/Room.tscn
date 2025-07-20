@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://c3h7ie5iyrsuu"]
+[gd_scene load_steps=5 format=4 uid="uid://c3h7ie5iyrsuu"]
 
 [ext_resource type="Texture2D" uid="uid://dhwgv7oiag5qb" path="res://Assets/Sprites/FloorTile.png" id="1_ora5q"]
-[ext_resource type="PackedScene" uid="uid://b8cmtqrfvtct4" path="res://Scenes/Entities/Player.tscn" id="2_ora5q"]
 [ext_resource type="PackedScene" uid="uid://bmwvk4xj4b64h" path="res://Scenes/Entities/TestEntity.tscn" id="3_f1yye"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ludak"]
@@ -20,6 +19,3 @@ position = Vector2(134, 55)
 
 [node name="TestEntity2" parent="." instance=ExtResource("3_f1yye")]
 position = Vector2(177, 91)
-
-[node name="Player" parent="." instance=ExtResource("2_ora5q")]
-position = Vector2(122, 131)

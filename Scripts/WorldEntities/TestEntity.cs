@@ -1,4 +1,5 @@
 using Godot;
+using TheBizarreJourney.Scripts.UI;
 
 namespace TheBizarreJourney.Scripts.WorldEntities;
 
@@ -8,6 +9,6 @@ public partial class TestEntity : WorldEntity
 	
 	public override void Interact(WorldEntity entity)
 	{
-		GD.Print(Name);
+		Main.PlayerEntity.Camera.AddChild(DialogueBox.New(["Hello there!", "Test 2"]));
 	}
 }
