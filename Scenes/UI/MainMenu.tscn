@@ -21,69 +21,60 @@ color = Color(0.298039, 0.423529, 0.313726, 1)
 [node name="Title" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.21
-anchor_right = 0.5
-anchor_bottom = 0.21
-offset_left = -84.0
-offset_top = -32.08
-offset_right = 84.0
-offset_bottom = 31.92
+anchor_left = 0.1125
+anchor_top = 0.133333
+anchor_right = 0.8875
+anchor_bottom = 0.311111
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 32
 text = "THE BIZARRE JOURNEY"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="SettingsButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.413
-anchor_top = 0.669
-anchor_right = 0.587
-anchor_bottom = 0.788
-offset_left = -0.276031
-offset_top = -24.012
-offset_right = 0.276001
-offset_bottom = -24.124
+anchor_left = 0.4
+anchor_top = 0.6
+anchor_right = 0.6
+anchor_bottom = 0.733333
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 48
+focus_mode = 0
+theme_override_font_sizes/font_size = 16
 text = "Settings"
+metadata/_edit_use_anchors_ = true
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.446
-anchor_top = 0.441
-anchor_right = 0.554
-anchor_bottom = 0.559
-offset_left = -0.291992
-offset_top = -0.268005
-offset_right = 0.291992
-offset_bottom = 0.268005
+anchor_left = 0.4375
+anchor_top = 0.444444
+anchor_right = 0.5625
+anchor_bottom = 0.577778
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 48
+focus_mode = 0
+theme_override_font_sizes/font_size = 16
 text = "Start"
+metadata/_edit_use_anchors_ = true
 
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.446
-anchor_top = 0.441
-anchor_right = 0.554
-anchor_bottom = 0.559
-offset_left = 0.208008
-offset_top = 247.232
-offset_right = 0.791992
-offset_bottom = 247.768
+anchor_left = 0.45
+anchor_top = 0.755556
+anchor_right = 0.553125
+anchor_bottom = 0.888889
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 48
+focus_mode = 0
+theme_override_font_sizes/font_size = 16
 text = "Quit"
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(576, 324)
+position = Vector2(160, 90)
