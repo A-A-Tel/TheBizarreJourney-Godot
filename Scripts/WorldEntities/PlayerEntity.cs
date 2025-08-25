@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using TheBizarreJourney.Scripts.Misc;
+using TheBizarreJourney.Scripts.UI;
 
 namespace TheBizarreJourney.Scripts.WorldEntities;
 
@@ -8,7 +9,7 @@ public partial class PlayerEntity : WorldEntity
 {
     private float _speed = 50F;
 
-    public Camera2D Camera { get; private set; }
+    private Camera2D _camera;
 
     // One Area2D per Direction enum value, matching the index
     private Area2D[] _interactAreas;
@@ -28,8 +29,8 @@ public partial class PlayerEntity : WorldEntity
     public override void _Ready()
     {
         base._Ready();
-        Camera = GetNode<Camera2D>("Camera");
-        Camera.MakeCurrent();
+        _camera = GetNode<Camera2D>("Camera");
+        _camera.MakeCurrent();
 
         _interactAreas =
         [
@@ -38,6 +39,11 @@ public partial class PlayerEntity : WorldEntity
             GetNode<Area2D>("South"),
             GetNode<Area2D>("West")
         ];
+    }
+
+    public void InitiateDialogue(string[] dialogue)
+    {
+        _camera.AddChild(DialogueBox.New(dialogue));
     }
 
     public override void Interact(WorldEntity entity)
@@ -67,7 +73,8 @@ public partial class PlayerEntity : WorldEntity
             closestDistance = distance;
         }
 
-        closest?.Interact(this);
+        if (closest != null) closest.Interact(this);
+        else Main.AudioManager.PlayNo();
     }
 
     private void Move(float delta)
@@ -114,7 +121,7 @@ public partial class PlayerEntity : WorldEntity
 
     private void OpenSettings()
     {
-        Main.SettingsMenu.PauseGame(Camera);
+        Main.SettingsMenu.PauseGame(_camera);
         Main.AudioManager.PlayMenuSelect();
     }
 }

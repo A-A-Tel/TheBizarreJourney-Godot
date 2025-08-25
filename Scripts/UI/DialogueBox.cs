@@ -29,8 +29,7 @@ public partial class DialogueBox : Control
 	{
 		if (Input.IsActionJustPressed("INTERACT"))
 		{
-			string result;
-			if (Dialogue.TryDequeue(out result))
+			if (Dialogue.TryDequeue(out string result))
 			{
 				_text.Text = result;
 			}
