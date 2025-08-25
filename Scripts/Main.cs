@@ -1,6 +1,7 @@
 using Godot;
 using TheBizarreJourney.Scripts.Misc;
 using TheBizarreJourney.Scripts.UI;
+using TheBizarreJourney.Scripts.WorldEntities;
 
 namespace TheBizarreJourney.Scripts;
 
@@ -8,6 +9,7 @@ public partial class Main : Node
 {
     public static readonly AudioManager AudioManager = new();
     public static readonly Settings SettingsMenu = GD.Load<PackedScene>("uid://0om27gmb1j0n").Instantiate<Settings>();
+    public static PlayerEntity PlayerEntity { get; set; }
 
     public override void _Ready()
     {

@@ -1,4 +1,5 @@
 using Godot;
+using TheBizarreJourney.Scripts.WorldEntities;
 
 namespace TheBizarreJourney.Scripts.UI;
 
@@ -13,8 +14,16 @@ public partial class MainMenu : Control
 	{
 		Window root = GetTree().Root;
 
-		root.AddChild(GD.Load<PackedScene>("uid://c3h7ie5iyrsuu").Instantiate<TileMapLayer>());
+		TileMapLayer room = GD.Load<PackedScene>("uid://c3h7ie5iyrsuu").Instantiate<TileMapLayer>();
+		PlayerEntity player = GD.Load<PackedScene>("uid://b8cmtqrfvtct4").Instantiate<PlayerEntity>();
+		
+		room.AddChild(player);
+		root.AddChild(room);
+		
+		Main.PlayerEntity = player;
+		
 		root.RemoveChild(this);
+		QueueFree();
 	}
 
 	private void OpenSettings()

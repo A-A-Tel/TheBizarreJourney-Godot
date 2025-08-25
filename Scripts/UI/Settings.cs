@@ -20,6 +20,7 @@ public partial class Settings : Control
 		GetTree().Paused = true;
 		MoveToFront();
 		Show();
+		_camera.MakeCurrent();
 	}
 
 	private void VolumeAction(double valueD)
@@ -83,7 +84,5 @@ public partial class Settings : Control
 
 
 		_camera = GetNode<Camera2D>("Camera");
-
-		_camera.MakeCurrent();
 	}
 }

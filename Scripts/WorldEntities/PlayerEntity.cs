@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using TheBizarreJourney.Scripts.Misc;
+using TheBizarreJourney.Scripts.UI;
 
 namespace TheBizarreJourney.Scripts.WorldEntities;
 
@@ -40,6 +41,11 @@ public partial class PlayerEntity : WorldEntity
         ];
     }
 
+    public void InitiateDialogue(string[] dialogue)
+    {
+        _camera.AddChild(DialogueBox.New(dialogue));
+    }
+
     public override void Interact(WorldEntity entity)
     {
         Area2D area = _interactAreas[(byte)Direction];
@@ -67,7 +73,8 @@ public partial class PlayerEntity : WorldEntity
             closestDistance = distance;
         }
 
-        closest?.Interact(this);
+        if (closest != null) closest.Interact(this);
+        else Main.AudioManager.PlayNo();
     }
 
     private void Move(float delta)
@@ -92,7 +99,7 @@ public partial class PlayerEntity : WorldEntity
 
             Vector2 leftJoyAxis = new(leftJoyX, leftJoyY);
 
-            moveVector = !MathHelper.IsVector2Between(leftJoyAxis, -Deadzone, Deadzone) ? leftJoyAxis : Vector2.Zero;
+            moveVector = MathHelper.IsVector2Between(leftJoyAxis, -Deadzone, Deadzone) ? Vector2.Zero : leftJoyAxis;
         }
 
         bool moving = moveVector != Vector2.Zero;
